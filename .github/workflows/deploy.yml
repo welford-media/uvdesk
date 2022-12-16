@@ -29,7 +29,6 @@ jobs:
       with:
         context: .
         tags: |
-          welford/uvdesk:latest
           ghcr.io/welford/uvdesk:latest
         push: ${{ github.ref == 'refs/heads/master' }}
     
