@@ -34,10 +34,9 @@ jobs:
         push: ${{ github.ref == 'refs/heads/master' }}
     
     - name: Deploy to Docker Swarm
-      uses: dtzar/docker-swarm-action@v1
+      uses: sagebind/docker-swarm-deploy-action@v2
       with:
-        host: ${{ secrets.SWARM_HOST }}
-        username: ${{ secrets.SWARM_USERNAME }}
-        password: ${{ secrets.SWARM_PASSWORD }}
-        service_name: ${{ secrets.SWARM_SERVICE_NAME }}
-        image: ghcr.io/welford/uvdesk:latest
+        remote_host: ${{ secrets.SWARM_HOST }}
+        ssh_private_key: ${{ secrets.SWARM_USERNAME }}
+        ssh_public_key: ${{ secrets.SWARM_PASSWORD }}
+        args: stack deploy --compose-file /root/stack.yaml uvdesk
